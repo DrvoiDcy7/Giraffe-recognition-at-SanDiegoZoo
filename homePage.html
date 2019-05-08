@@ -1,0 +1,392 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- font awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+  <style>
+    header{
+      background: url(../static/img/giraffe-home.jpg);
+      background-size: cover;
+      background-position: center;
+      min-height:1000px;
+    }
+    @media screen and (max-width: 670px){
+      header{
+        min-height: 500px;
+      }
+    }
+    .brand-logo{
+      font-family: serif;
+      font-style: oblique;
+      font-weight: 600;
+      position: absolute;
+      margin-left: -30px;
+    }
+    .section{
+      padding-top: 4vw;
+      padding-bottom: 4vw;
+    }
+    .tabs .indicator{
+      background-color: #1a237e;
+    }
+    .tabs .tab a:focus, .tabs .tab a:focus.active{
+      background: transparent;
+    }
+    .upload-icon{
+		position: absolute;
+		margin-left: 400px;
+		margin-top: 60px;
+    }
+    .right{
+    	position: absolute;
+    	margin-left: 550px;
+    }
+
+
+	#dropFileForm {
+		margin-left: 110px;
+		margin-top: -20px;
+  text-align: center;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: 0.5s;
+}
+
+#dropFileForm #fileLabel {
+  background-color: #e5e5e5;
+  display: block;
+  padding: 16px;
+  position: relative;
+  cursor: pointer;
+}
+
+#dropFileForm #fileInput {
+  display: none;
+}
+
+#dropFileForm #fileLabel:after,
+#dropFileForm #fileLabel:before {
+  position: absolute;
+  content: "";
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  z-index: -2;
+  border-radius: 8px 8px 0 0;
+}
+
+#dropFileForm #fileLabel:before {
+  z-index: -1;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 5%,
+    black 5%,
+    black 10%
+  );
+  opacity: 0;
+  transition: 0.5s;
+}
+
+#dropFileForm.fileHover #fileLabel:before {
+  opacity: 0.25;
+}
+
+#dropFileForm .uploadButton {
+  border: 0;
+  outline: 0;
+  width: 100%;
+  padding: 8px;
+  background-color: grey;
+  color: #fff;
+  cursor: pointer;
+}
+
+#dropFileForm.fileHover {
+  box-shadow: 0 0 16px grey;
+}
+
+#fileLabelText{
+	color:#5a5a5a;
+}
+#photoRecognition{
+	height: 400px;
+
+}
+#photoRecognition-link{
+	font-size: 20px;
+	margin-top: 50px;
+	line-height: 30px;
+}
+
+  </style>
+    <script type="text/javascript">
+        function ProcessFile(e) {
+            var file = document.getElementById('fileInput').files[0];
+            if (file) {
+                var reader = new FileReader();
+                reader.onload = function (event) {
+                    var txt = event.target.result;
+
+                    var img = document.createElement("img");
+                    img.src = txt;
+
+                    document.getElementById("result").appendChild(img);
+                };
+            }
+            reader.readAsDataURL(file);
+        }
+
+        function contentLoaded() {
+            document.getElementById('fileInput').addEventListener('change',
+                ProcessFile, false);
+        }
+
+        window.addEventListener("DOMContentLoaded", contentLoaded, false);
+    </script>
+
+</head>
+<body>
+
+  <!-- navbar -->
+  <header>
+    <nav class="nav-wrapper transparent">
+      <div class="container">
+        <a href="#" class="brand-logo indigo-text">Giraffe Photos Recognition </a>
+          <a href="" class="sidenav-trigger" data-target="mobile-menu">
+            <i class="material-icons">menu</i>
+          </a>
+          <ul class="right hide-on-med-and-down">
+          	<li><a href="#overview" class="indigo-text">Overview</a></li>
+            <li><a href="#photo's" class="indigo-text">Photo's</a></li>
+            <li><a href="#achievements" class="indigo-text">Achiements</a></li>
+            <li><a href="#photoRecognition" class="indigo-text">Photo Recognition</a></li>
+            <li><a href="#contact" class="indigo-text">Contact</a></li>
+            <li><a href="#" class="btn-floating btn-small indigo lighten-1 tooltipped" data-tooltip="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a></li>
+            <li><a href="#" class="btn-floating btn-small indigo lighten-2 tooltipped" data-tooltip="facebook">
+              <i class="fab fa-facebook"></i>
+            </a></li>
+          </ul>
+          <ul class="sidenav grey lighten-2" id="mobile-menu">
+          	<li><a href="#overview" class="indigo-text">Overview</a></li>
+            <li><a href="#photo's">Photo's</a></li>
+            <li><a href="#achievements">Achiements</a></li>
+            <li><a href="#photoRecognition" class="indigo-text">Photo Recognition</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+      </div>
+    </nav>
+  </header>
+
+  <!-- photo / grid -->
+  <section class="container section scrollspy" id="photo's">
+    <div class="row">
+      <div class="col s12 l4">
+        <img src="../static/img/giraffe-s1.jpg" alt="" class="responsive-img materialboxed">
+      </div>
+      <div class="col s12 l6 offset-l1">
+        <h3 class="indigo-text text-darken-4">scenario 1: Regular</h3>
+        <p>Giraffe individuals with <b>regular actions, regular locations, clear picture quality</b> and <b>enough light.</b></p>
+        <a href="#">See more pictures!</a>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12 l4 push-l7">
+        <img src="../static/img/giraffe-s2.jpg" alt="" class="responsive-img materialboxed">
+      </div>
+      <div class="col s12 l6 pull-l5 right-align offset-l1">
+        <h3 class="indigo-text text-darken-4">scenario 2: Unusual</h3>
+        <p>Giraffe individuals <b>acting unusually,</b> like lying on the ground with diverse postures, tangling necks around each other,etc.</p>
+        <a href="#">See more pictures!</a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12 l4 ">
+        <img src="../static/img/giraffe-s3.jpg" alt="" class="responsive-img materialboxed">
+      </div>
+      <div class="col s12 l6 offset-l1">
+        <h3 class="indigo-text text-darken-4">scenario 3: Shadow</h3>
+        <p>Some pictures were taken at <b>special times,</b> like at night, or during the sunset, which may be beautiful but difficult to recognize.</p>
+        <a href="#">See more pictures!</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- parallax -->
+  <div class="parallax-container">
+    <div class="parallax">
+      <img src="../static/img/giraffe-prlx1.jpg" alt="" class="responsive-img">
+    </div>
+  </div>
+
+  <!-- achievements / tabs -->
+  <section class="container section scrollspy" id="achievements">
+    <div class="row">
+      <div class="col s12 l4">
+        <h3 class="indigo-text text-darken-4">What we did...</h3>
+        <p>We developed a giraffe photo recognition application with machine learning techonoligies...</p>
+
+      </div>
+      <div class="col s12 l6 offset-l2">
+        <ul class="tabs">
+          <li class="tab col l6">
+            <a href="#achievement1" class="indigo-text text-darken-4">Achievement1 Title</a>
+          </li>
+          <li class="tab col l6">
+            <a href="#achievement2" class="indigo-text text-darken-4">visualization</a>
+          </li>
+        </ul>
+
+        <div class="col s12" id="achievement1">
+          <p class="indigo-text flow-text text-darken-4">Achievement1 Details</p>
+          <p>Implemented machine learning algorithms and succesfully recognized giraffes in different senarios.</p>
+        </div>
+        <div class="col s12" id="achievement2">
+          <p class="indigo-text flow-text text-darken-4"><a href="https://www.topozone.com/california/san-diego-ca/park/san-diego-zoo/">visualization Details</a></p>
+          <p>Built a website to demonstrate our results with visualization tools (D3.js)</p>
+          <p><a href="../static/img/v1.png">Variation of giraffe numbers on each camera</a></p>
+          <p><a href="../static/img/v2.jpg">Floating tendency based on camera locations</a></p>
+          <p><a href="../static/img/v3.png">Giraffe population thermodynamic distribution</a></p>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- parallax -->
+  <div class="parallax-container">
+    <div class="parallax">
+      <img src="../static/img/giraffe-prlx2.jpg" alt="" class="responsive-img">
+    </div>
+  </div>
+
+
+<!-- Photo Recognition -->
+  <section class="container section scrollspy" id="photoRecognition">
+  	<div class="row">
+  		<div class="col s12 l4">
+  			<h3 class="indigo-text text-darken-4">Photo Recognition</h3>
+  			<p id="photoRecognition-greeting">Upload a picture of animals and recognize them with our system!</p>
+  		</div>
+
+  		<div class="upload-icon">
+  			<form action="{{ url_for('predict') }}" id="dropFileForm" method="post">
+  			<input type="file" name="files[]" id="fileInput" multiple onchange="addFiles(event)"  accept=".jpeg,.jpg,.png">
+
+  			<label for="fileInput" id="fileLabel" ondragover="overrideDefault(event);fileHover();" ondragenter="overrideDefault(event);fileHover();" ondragleave="overrideDefault(event);fileHoverEnd();" ondrop="overrideDefault(event);fileHoverEnd();
+        		addFiles(event);">
+    		<i class="fa fa-download fa-5x"></i>
+   			<br>
+    		<span id="fileLabelText">
+      			Choose a file or drag it here
+    		</span>
+    		<br>
+    		<span id="uploadStatus"></span>
+  			</label>
+  			<input type="submit" value="Upload" class="uploadButton">
+
+			</form>
+            <div id="result" style="position:absolute;left:360px;top:-50px;width:80px;height:60px"></div>
+  		</div>
+
+
+  	</div>
+  	<div class="row">
+  		<div class="col s12 l5">
+  			<h5 id="photoRecognition-link">You are welcomed to check our photo recognition function!</h5>
+  		</div>
+	</div>
+  </section>
+
+  <!-- parallax -->
+  <div class="parallax-container">
+    <div class="parallax">
+      <img src="../static/img/giraffe-prlx3.jpg" alt="" class="responsive-img">
+    </div>
+  </div>
+
+  <!-- contact form -->
+  <section class="section container scrollspy" id="contact">
+    <div class="row">
+      <div class="col s12 l5">
+        <h2 class="indigo-text text-darken-4">Get In Touch!</h2>
+        <p>Hi there! Thank you for your time reviewing our work on this project, hope you find it interesting and inspiring!</p>
+        <p>If there is any further comments on this project, or you'd like to know more and share with your opinions, feel free to leave us a message on the right. We'll take it carefully. </p>
+      </div>
+      <div class="col s12 l5 offset-l2">
+        <form action="">
+          <div class="input-field">
+            <i class="material-icons prefix">email</i>
+            <input type="email" id="email">
+            <label for="email">Your email</label>
+          </div>
+          <div class="input-field">
+            <textarea id="message" class="materialize-textarea"></textarea>
+              <i class="material-icons prefix">message</i>
+              <label for="message">Your message</label>
+          </div>
+          <div class="input-field">
+            <input type="text" id="date" class="datepicker">
+            <label for="date">Choose a date...</label>
+          </div>
+          <div class="input-field">
+            <button class="btn">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- footer -->
+  <footer class="page-footer grey darken-3">
+    <div class="container">
+      <div class="row">
+        <div class="col s12 l6">
+          <h5>About Me</h5>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe harum sequi placeat vero, fuga, asperiores ad impedit modi est dolores officiis doloremque assumenda molestias esse numquam nisi quam magni consectetur.</p>
+        </div>
+        <div class="col s12 l4 offset-l2">
+          <h5>Connect</h5>
+          <ul>
+            <li class="grey-text text-lighten-3">facebook</li>
+            <li class="grey-text text-lighten-3">linkedin</li>
+            <li class="grey-text text-lighten-3">youtube</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright grey darken-4">
+      <div class="container center-align">
+        &copy; 2019 Chengyuan Deng, Xiao Liu, Jiapeng Zhang
+      </div>
+    </div>
+  </footer>
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      $('.sidenav').sidenav();
+      $('.materialboxed').materialbox();
+      $('.parallax').parallax();
+      $('.tabs').tabs();
+      $('.datepicker').datepicker({
+        disableWeekends: true
+      });
+      $('.tooltipped').tooltip();
+      $('.scrollspy').scrollSpy();
+    });
+  </script>
+</body>
+</html>
